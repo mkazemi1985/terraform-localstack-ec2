@@ -1,30 +1,38 @@
+# Terraform + LocalStack EC2 Example
 
-# Terraform LocalStack EC2
-
-This project demonstrates how to provision EC2 instances on LocalStack using Terraform. It allows testing AWS infrastructure locally without real AWS credentials.
+This is a sample project that provisions an EC2 instance on LocalStack using Terraform. It's intended for testing and learning infrastructure-as-code workflows without needing a real AWS account.
 
 ## Prerequisites
 
-- Terraform installed
-- LocalStack running locally
-- AWS CLI configured for LocalStack
-- Python virtual environment with required packages installed
+- Terraform
+- LocalStack (running via pipx or Docker)
+- AWS CLI (configured to work with LocalStack)
+- Python 3 and pipx (for managing LocalStack if installed via pipx)
 
 ## Usage
 
-1. Activate your virtual environment:
-   ```bash
-   source .venv/bin/activate
-   ```
-2. Initialize Terraform:
+1. Initialize the Terraform project:
    ```bash
    terraform init
    ```
-3. Apply Terraform configuration:
+
+2. Preview the changes Terraform will make (optional but recommended):
+   ```bash
+   terraform plan
+   ```
+
+3. Apply the changes:
+   ```bash
+   terraform apply
+   ```
+
+4. Or apply without prompt:
    ```bash
    terraform apply -auto-approve
    ```
-4. Check EC2 instances via AWS CLI:
-   ```bash
-   aws ec2 describe-instances --endpoint-url=http://localhost:4566
-   ```
+
+## Notes
+
+- Make sure LocalStack is running before applying the configuration.
+- The Terraform backend and provider are configured to connect to LocalStack rather than AWS.
+- State and cache files (like `.terraform`, `terraform.tfstate`) are excluded from version control.
